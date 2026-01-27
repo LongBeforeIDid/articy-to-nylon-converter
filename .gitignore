@@ -1,0 +1,27 @@
+/godot-project-files/Nylon/
+/godot-project-files/NylonTemplates/
+/godot-project-files/NylonContent/Characters/
+/godot-project-files/Output/
+/godot-project-files/TestFiles/
+
+/godot-project-files/.editorconfig
+/godot-project-files/project.godot
+
+# Godot 4+ specific ignores
+.godot/
+.nomedia
+
+# Godot-specific ignores
+.import/
+export.cfg
+export_credentials.cfg
+*.tmp
+
+# Imported translations (automatically generated from CSV files)
+*.translation
+
+# Mono-specific ignores
+.mono/
+data_*/
+mono_crash.*.json
+/articy-templates-for-nylon/Sessions/

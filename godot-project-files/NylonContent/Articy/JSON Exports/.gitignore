@@ -1,0 +1,4 @@
+# Put your JSON exports in this directory. This .gitignore prevents JSON data (or anything else in this folder) from being included in commits.
+#
+*
+!.gitignore
