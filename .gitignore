@@ -24,4 +24,4 @@ export_credentials.cfg
 .mono/
 data_*/
 mono_crash.*.json
-/articy-templates-for-nylon/Sessions/
+/articy-templates-for-nylon

@@ -16,5 +16,4 @@ static var path_global = _fetch_json_path("global_variables.json")
 
 
 static func _fetch_json_path(filename: String) -> String:
-	print(filename)
 	return json_path + Array(DirAccess.get_files_at(json_path)).filter(func(file: String) -> bool: return file.match(filename)).front()

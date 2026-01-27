@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://u1tgfekperdy"]
 
-[ext_resource type="Script" uid="uid://31v0ec270hu5" path="res://NylonContent/Articy/Scripts/ArticyNylonConverter.gd" id="1_ypukq"]
+[ext_resource type="Script" uid="uid://31v0ec270hu5" path="res://NylonContent/Articy/Converter/ArticyNylonConverter.gd" id="1_ypukq"]
 
 [node name="ArticyNylonConverter" type="Node" unique_id=774840739]
 script = ExtResource("1_ypukq")
