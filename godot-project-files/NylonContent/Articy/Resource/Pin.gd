@@ -17,7 +17,7 @@ func create_aatt_array(is_container: bool = false) -> Array[ArticyAddToTree]:
 	var aatt_seq = owner.create_aatt()
 	var aatt_goto = owner.create_goto_aatt()
 	
-	aatt_seq.node = NylonSequence.new()
+	aatt_seq.node = NylonArticySequence.new()
 	aatt_seq.node.name = id
 	
 	aatt_goto.ar = owner

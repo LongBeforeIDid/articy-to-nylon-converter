@@ -14,7 +14,6 @@ static func set_global_variable(name_space: String, variable: String, value: Var
 		global_variables.get(name_space).set(variable, value)
 	else:
 		global_variables.set(name_space, {variable: value})
-	print("Updated Articy Global Variables: " + str(global_variables))
 
 
 static func add_global_variable(name_space:String, variable: String, value: int):

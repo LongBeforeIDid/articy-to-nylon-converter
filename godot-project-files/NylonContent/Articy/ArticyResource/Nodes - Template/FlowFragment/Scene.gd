@@ -9,7 +9,7 @@ func _process_incoming():
 
 func _process_main():
 	var aatt = create_aatt()
-	aatt.node = NylonSequence.new()
+	aatt.node = NylonArticySequence.new()
 	aatt.node.name = "START_SEQUENCE"
 	aatt_array.append(aatt)
 	
@@ -21,7 +21,7 @@ func _process_main():
 
 func _process_outgoing():
 	var aatt_seq = create_aatt()
-	aatt_seq.node = NylonSequence.new()
+	aatt_seq.node = NylonArticySequence.new()
 	aatt_seq.node.name = main_output_pin.id
 	aatt_array.append(aatt_seq)
 	

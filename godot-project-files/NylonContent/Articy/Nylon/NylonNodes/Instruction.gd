@@ -45,12 +45,3 @@ func _run() -> void:
 	
 	_complete()
 	return
-
-
-# Handles variables within the "traits" NameSpace in Articy
-func _set_trait(n: String, v: Variant):
-	
-	if v is not bool:
-		print("ERROR! Failed to add trait, recieved unexpected non-bool value.")
-		return
-	

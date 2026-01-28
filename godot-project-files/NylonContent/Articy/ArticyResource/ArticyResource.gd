@@ -17,7 +17,7 @@ var creates_node: bool = true
 ## You probably don't want to override this one, and should override
 ## the three functions it calls instead.
 func _generate_nylon() -> Array[ArticyAddToTree]:
-	ArticyDebug.log_ar_properties(self)
+	ArticyLog.log_ar_properties(self)
 	_process_incoming()
 	_process_main()
 	_process_outgoing()
@@ -95,7 +95,7 @@ func create_goto_aatt() -> ArticyAddToTree:
 
 func _create_sequence_aatt() -> ArticyAddToTree:
 	var aatt = create_aatt()
-	aatt.node = NylonSequence.new()
+	aatt.node = NylonArticySequence.new()
 	aatt.node.name = id
 	return aatt
 

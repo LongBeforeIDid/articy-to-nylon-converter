@@ -23,6 +23,17 @@ static func parse_condition(string: String):
 	return con_ex
 
 
+static func get_goto_name(goto: NylonNode) -> String:
+	if not goto: return ""
+	if not goto.get_parent(): return ""
+	
+	var parent_name = str(goto.get_parent().name)
+	var node_index = str(goto.get_index())
+	
+	var goto_name = parent_name + "_" + node_index
+	return goto_name
+
+
 static func _parse_condition_sub_expression(string: String) -> String:
 	var modified_string = ""
 	var temp_string = string
