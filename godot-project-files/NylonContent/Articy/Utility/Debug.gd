@@ -1,4 +1,4 @@
-class_name ArticyDebug extends ArticyData
+class_name ArticyDebug extends ArticyDataLoader
 
 
 static func log_articy_info(ar: ArticyResource):
@@ -54,21 +54,17 @@ static func log_ar_properties(ar: ArticyResource):
 		print("Technical Name: " + str(ar.technical_name))
 		print("display_name: " + str(ar.display_name))
 		print("text: " + ar.text)
-		print("targeted_pin: " + str(ar.targeted_pin))
-		print("assigned_sequence: " + str(ar.assigned_sequence))
 		print("Sources: " + str(ar.sources))
 		print("active_IO: " + str(ar.active_IO))
 		print()
 		if ar.main_input_target:
 			print("~INPUT INFORMATION~")
-			print("input_pins: " + str(ar.input_pins))
 			print("main_input_pin_id: " + str(ar.main_input_pin.id))
 			print("main_input_target_id: " + str(ar.main_input_target.id))
 			print("main_input_target_pin_id: " + str(ar.main_input_target_pin.id))
 			print()
 		if ar.main_output_target:
 			print("~OUTPUT INFORMATION~")
-			print("output_pins: " + str(ar.output_pins))
 			print("main_output_pin_id: " + str(ar.main_output_pin.id))
 			print("main_output_target_id: " + str(ar.main_output_target.id))
 			print("main_output_target_pin_id: " + str(ar.main_output_target_pin.id))

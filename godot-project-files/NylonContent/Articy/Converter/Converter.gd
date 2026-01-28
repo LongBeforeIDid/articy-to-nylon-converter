@@ -1,6 +1,6 @@
-class_name ArticyNylonConverter extends ArticyData
-## A helper node that is used to convert Articy JSON exports into NylonSceneNodes.
-## "Articy node" refers generically to any dictionary contained within Objects[]
+class_name ArticyNylonConverter extends ArticyDataLoader
+## A helper node that converts JSON data from
+## 
 
 ## Enables verbose debug logging.
 static var verbose_log: bool = true
@@ -23,20 +23,29 @@ func _ready() -> void:
 	# Populate flow_dict by converting JSON objects into ArticyResources
 	load_nodes_from_json()
 	
+	# Iterate through every ArticyScene node in the export.
 	for scene in _get_scene_array():
+		
+		# Process the [ArticyScene] before anything else, to set the [NylonScene]
+		# root and add the first  [NylonSequence] child.
 		_process_aatt_array(scene._generate_nylon())
 		
+		# Create an [Array] containing only those nodes nested inside
+		# of the active [AtricyScene] within the Articy Flow.
 		var ar_array = _get_ar_array_from_scene(scene)
+		
+		# Process each member of the [Array], build the scene.
 		for ar in ar_array:
 			_process_aatt_array(ar._generate_nylon())
 		
+		# Once the Scene has been constructed, assign the appropriate 
+		# target_sequence to any NylonGoToSequence or NylonChoice nodes.
 		_process_goto_dict(goto_dict)
 		
 		_save_scene()
 
 
-## Process an array of [ArticyAddToTree] commands sequentially.
-## Is called by _process_apr().
+# Processes an array of [ArticyAddToTree] commands sequentially.
 func _process_aatt_array(aatt_array: Array[ArticyAddToTree]):
 	for aatt in aatt_array:
 		_process_aatt(aatt)
@@ -61,6 +70,8 @@ func _process_aatt(aatt: ArticyAddToTree):
 	else:
 		set_parent_and_owner(aatt.node)
 		if aatt.target_sequence_id:
+			print("adding to goto dict: " + str(aatt.node.node_id))
+			print("target sequence to add: " + str(aatt.target_sequence_id))
 			goto_dict.get_or_add(aatt.node, aatt.target_sequence_id)
 
 
@@ -68,25 +79,28 @@ func _process_aatt(aatt: ArticyAddToTree):
 ## [member NylonGoToSequence.target_sequence] values as needed.
 func _process_goto_dict(dict: Dictionary[NylonNode,String]):
 	for node in dict:
+		print("Adding goto for: " + str(node.node_id))
 		node.target_sequence = get_sequence_from_id(dict.get(node))
-			
+		print("Goto added: " + str(node.target_sequence))
 
 
-## Packs [member active_scene_root] and all of it's descendants 
-## into a .tscn file, saving it to the directory specified in 
-## res://NylonContent/Articy/Config/PathConfig.gd
+## Packs [member active_scene_root] and all of it's descendants into a .tscn
+## file, saving it to the directory specified in 
+## res://NylonContent/Articy/Config/ArticyPathConfig.gd
 func _save_scene():
 	var scene = PackedScene.new()
 	scene.pack(active_scene_root)
-	ResourceSaver.save(scene, PathConfig.scene_path + String(active_scene_root.name) + ".tscn")
+	ResourceSaver.save(scene, ArticyPathConfig.scene_path + String(active_scene_root.name) + ".tscn")
 
 #endregion
+
 
 func set_parent_and_owner(node: Node, parent: Node = active_sequence, root: Node = active_scene_root):
 	print(active_scene_root)
 	if parent:
 		parent.add_child(node)
 		node.owner = root
+
 
 #region Getters
 

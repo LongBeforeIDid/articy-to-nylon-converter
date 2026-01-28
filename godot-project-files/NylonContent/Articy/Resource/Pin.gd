@@ -1,5 +1,5 @@
 class_name ArticyPin extends Resource
-## Holds the data from a "Pin" dictionary within an Articy export.
+## Holds the data from a "Pin" dictionary within an Articy JSON export.
 ##
 ##
 
@@ -7,7 +7,7 @@ var id: String
 var owner_id: String
 var owner: ArticyResource:
 	get:
-		return ArticyResourceBase.ar_from_id(owner_id)
+		return ArticyResource.ar_from_id(owner_id)
 var connections: Array[ArticyConnection]
 var io_type: ArticyResource.IO
 

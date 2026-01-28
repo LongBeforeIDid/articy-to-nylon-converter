@@ -24,15 +24,5 @@ func _process_outgoing():
 		else:
 			print("Graceful error: non-DialogueFragment spoke on hub.")
 			aatt.node.label = target_ar.text
-
-			
+		
 		aatt_array.append(aatt)
-
-
-
-func _generate_process_requests() -> Array[ArticyProcessRequest]:
-	var apr_array: Array[ArticyProcessRequest]
-	
-	
-	
-	return apr_array

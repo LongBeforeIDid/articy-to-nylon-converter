@@ -1,12 +1,12 @@
 @abstract
-class_name ArticyData extends Articy
+class_name ArticyDataLoader extends Articy
 ## Base class for AtricyNylonConverter, preloads JSON data from files.
 
-static var json_pack = _readJSON(PathConfig.path_pack)
-static var json_pack_loc = _readJSON(PathConfig.path_pack_loc)
-static var json_def = _readJSON(PathConfig.path_def)
-static var json_def_loc = _readJSON(PathConfig.path_def_loc)
-static var json_global = _readJSON(PathConfig.path_global)
+static var json_pack = _readJSON(ArticyPathConfig.path_pack)
+static var json_pack_loc = _readJSON(ArticyPathConfig.path_pack_loc)
+static var json_def = _readJSON(ArticyPathConfig.path_def)
+static var json_def_loc = _readJSON(ArticyPathConfig.path_def_loc)
+static var json_global = _readJSON(ArticyPathConfig.path_global)
 
 ## stores ArticyResources, access using id String.
 static var flow_dict: Dictionary[String,ArticyResource]
@@ -18,7 +18,7 @@ static func localize(key) -> String:
 		#Parses localization_json for the correct resource and language
 		if json_pack_loc.get(key):
 			var all_languages = json_pack_loc.get(key)
-			var local_language = all_languages.get(PathConfig.locale)
+			var local_language = all_languages.get(ArticyPathConfig.locale)
 			return local_language.get("Text")
 		else:
 			return key

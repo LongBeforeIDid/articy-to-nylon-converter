@@ -1,9 +1,19 @@
 class_name ArticyResourceBaseProperties extends ArticyResourceBase
+## A base class of [ArticyResource] containing 
 
-## Assigned first
+
+## A [Dictionary] of [member ArticyResourceBaseProperties.id] 
+## keys storing the corresponding [ArticyResource] for the entire 
+## Flow of an Articy project.
+static var flow_dict: Dictionary[String,ArticyResource]:
+	get:
+		return ArticyDataLoader.flow_dict
+
+## The [Dictionary] that is assigned to this [ArticyResource] from the
+## [code]*_objects.json[/code] file at [member ArticyPathConfig.path_pack].
 var _ar_dict: Dictionary
 
-## The node's type. This will be a template name, if it has one
+## The node's type. This will be a template name if the node has one.
 var type: String:
 	get:
 		if _ar_dict: return _ar_dict.get("Type")
@@ -33,17 +43,22 @@ var parent: String:
 ## The (localized) main text of the node.
 var text: String:
 	get:
-		return ArticyData.localize(_get_property("Text"))
+		return ArticyDataLoader.localize(_get_property("Text"))
 
-## Internal version of display_name without type hint, for _get_display_name override.
-## Override is used by ArticyResources that need to localize the returned [String].
-## 
+# Internal version of display_name without type hint, for _get_display_name override.
+# Override is used by ArticyResources that need to localize the returned [String]. 
 var _display_name: get = _get_display_name
 
 ## The non-unique, descriptive name for this Articy Node
 var display_name: String:
 	get:
 		return _display_name
+
+## This is just a more descriptive way to write [code]flow_dict.get(id)[/code]
+static func ar_from_id(id: String) -> ArticyResource:
+	if flow_dict:
+		return flow_dict.get(id)
+	return
 
 
 func _get_property(property: String, expected_return: String = "String") -> Variant:
@@ -58,6 +73,6 @@ func _get_property(property: String, expected_return: String = "String") -> Vari
 			return {}
 	return
 
-
+# See above
 func _get_display_name() -> String:
 	return _get_property("DisplayName")

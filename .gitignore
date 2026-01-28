@@ -1,5 +1,20 @@
-/godot-project-files/
-!/godot-project-files/NylonContent/Articy/
+/godot-project-files/icon.sv*
+/godot-project-files/.editorconfig
+/godot-project-files/project.godot
+
+/godot-project-files/Nylon/
+/godot-project-files/NylonTemplates/
+/godot-project-files/Output/
+/godot-project-files/TestFiles/
+/godot-project-files/addons/
+
+/godot-project-files/NylonContent/Characters/
+/godot-project-files/NylonContent/Reader/
+/godot-project-files/NylonContent/Nodes/
+/godot-project-files/NylonContent/Scenes/
+/godot-project-files/NylonContent/Messages/
+/godot-project-files/NylonContent/nylon_config.tres
+
 
 # Godot 4+ specific ignores
 .godot/
