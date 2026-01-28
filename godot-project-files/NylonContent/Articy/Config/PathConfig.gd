@@ -1,4 +1,4 @@
-class_name PathConfig extends Node
+class_name ArticyPathConfig extends Node
 
 const locale = "en-CA"
 
