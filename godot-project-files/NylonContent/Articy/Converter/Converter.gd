@@ -1,9 +1,6 @@
 class_name ArticyNylonConverter extends ArticyDataLoader
 ## A helper node that converts JSON data from
-## 
 
-## Enables verbose debug logging.
-static var verbose_log: bool = true
 
 ## The NylonScene node root of the scene being processed
 static var active_scene_root: NylonScene
@@ -57,21 +54,20 @@ func _process_aatt_array(aatt_array: Array[ArticyAddToTree]):
 ## Calls [method ArticyResource._process_apr_array] on the same 
 ## [ArticyResource] once completed.
 func _process_aatt(aatt: ArticyAddToTree):
-	ArticyDebug.log_aatt_properties(aatt)
 	if not aatt.node:
 		return
 	
 	if aatt.node is NylonScene:
 		get_tree().root.add_child.call_deferred(aatt.node)
 		active_scene_root = aatt.node
+	
 	elif aatt.node is NylonSequence:
 		set_parent_and_owner(aatt.node, active_scene_root)
 		active_sequence = aatt.node
+	
 	else:
 		set_parent_and_owner(aatt.node)
 		if aatt.target_sequence_id:
-			print("adding to goto dict: " + str(aatt.node.node_id))
-			print("target sequence to add: " + str(aatt.target_sequence_id))
 			goto_dict.get_or_add(aatt.node, aatt.target_sequence_id)
 
 
@@ -79,9 +75,10 @@ func _process_aatt(aatt: ArticyAddToTree):
 ## [member NylonGoToSequence.target_sequence] values as needed.
 func _process_goto_dict(dict: Dictionary[NylonNode,String]):
 	for node in dict:
-		print("Adding goto for: " + str(node.node_id))
-		node.target_sequence = get_sequence_from_id(dict.get(node))
-		print("Goto added: " + str(node.target_sequence))
+		ArticyDebug.log_target_sequence_assignment(node)
+		
+		var target_sequence = get_sequence_from_id(dict.get(node))
+		node.target_sequence = target_sequence
 
 
 ## Packs [member active_scene_root] and all of it's descendants into a .tscn
@@ -89,14 +86,15 @@ func _process_goto_dict(dict: Dictionary[NylonNode,String]):
 ## res://NylonContent/Articy/Config/ArticyPathConfig.gd
 func _save_scene():
 	var scene = PackedScene.new()
+	var path = ArticyPathConfig.scene_path + str(active_scene_root.name) + ".tscn"
+	
 	scene.pack(active_scene_root)
-	ResourceSaver.save(scene, ArticyPathConfig.scene_path + String(active_scene_root.name) + ".tscn")
+	ResourceSaver.save(scene, path)
 
 #endregion
 
 
 func set_parent_and_owner(node: Node, parent: Node = active_sequence, root: Node = active_scene_root):
-	print(active_scene_root)
 	if parent:
 		parent.add_child(node)
 		node.owner = root
