@@ -27,20 +27,8 @@ This tool allows you to design and organize a complex dialogue scene within Arti
 
 ## Installation
 
-### Articy
-1. Save the **_/articy-templates-for-nylon/_** directory somewhere sensible. (NOT inside your Godot project directory.)
-2. Launch _Articy:Draft X_ and select _**open from file**_ on the project selection screen.
-3. Navigate to **_/articy-templates-for-nylon/_** and select _**ProjectInfo.aph**_.
-4. Right click the newly added project, and select _**clone project**_. Use this copy as the foundation of your own project.
-> [!IMPORTANT]
-> Articy, by design, is unable to import new templates into an existing project. This is why a pre-configured project is included in this repo. I intend to replace this with a script to auto-genrate the templates using the Articy Dev API, at some point.
->
-> If you would like to use this tool with an existing project, you must create the templates yourself. Make sure that the names, technical names, and properties of the templates you create are identical to those in the pre-configured project; otherwise, the parser will fail.
->
-> _ArticyData.gd_ contains the list of template names this tool expects to recieve. It will also indicate the ArticyResource-derived Class that defines any non-default properties that the template is expected to have.
-
 ### Godot
-1. Copy the _/NylonContent_ directory from _/godot-project-files_ into the root directory of your own Godot project.
+1. Copy the _/godot-project-files/NylonContent_ directory into the root directory of your own Godot project.
 > [!IMPORTANT]
 > Make sure you've installed Nylon itself first, following all the instructions (don't forget to set _Nylon.gd_ as an autoloaded class within the _Globals_ tab of the _Project Settings_ menu.)
 

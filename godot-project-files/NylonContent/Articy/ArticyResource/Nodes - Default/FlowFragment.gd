@@ -1,5 +1,9 @@
-class_name ArticyFlowFragment extends ArticyFlowFragmentBase
+class_name ArticyFlowFragment extends ArticyResource
 
 
-func _process_main():
+func _add_main_nodes():
 	super()
+
+
+func _get_display_name() -> String:
+	return ArticyDataLoader.localize(_get_property("DisplayName"))

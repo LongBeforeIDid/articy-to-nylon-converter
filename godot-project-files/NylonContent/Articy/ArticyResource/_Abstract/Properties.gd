@@ -55,9 +55,9 @@ var display_name: String:
 		return _display_name
 
 ## This is just a more descriptive way to write [code]flow_dict.get(id)[/code]
-static func ar_from_id(id: String) -> ArticyResource:
+static func ar_from_id(ar_id: String) -> ArticyResource:
 	if flow_dict:
-		return flow_dict.get(id)
+		return flow_dict.get(ar_id)
 	return
 
 

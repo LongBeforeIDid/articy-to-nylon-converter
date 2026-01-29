@@ -6,13 +6,19 @@ static var global_variables: Dictionary[String,Dictionary] = {}
 #region Global Variable Functions
 
 static func get_global_variable(name_space: String, variable: String) -> Variant:
+	print(global_variables.get(name_space).get(variable))
+	pass
 	return global_variables.get(name_space).get(variable)
 
 
 static func set_global_variable(name_space: String, variable: String, value: Variant):
 	if global_variables.get(name_space):
+		print(global_variables.get(name_space).set(variable, value))
+		pass
 		global_variables.get(name_space).set(variable, value)
 	else:
+		print(global_variables.set(name_space, {variable: value}))
+		pass
 		global_variables.set(name_space, {variable: value})
 
 
@@ -33,5 +39,7 @@ static func global_variable_exists(name_space: String, variable: String) -> Vari
 	if global_variables.get(name_space):
 		return global_variables.get(name_space).get(variable)
 	return false
+
+
 
 #endregion

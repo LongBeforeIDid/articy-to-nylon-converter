@@ -15,9 +15,7 @@ var stage_directions: String:
 		return _get_property("StageDirections")
 
 
-func _process_main():
-	super()
-	
+func _add_main_nodes():
 	var aatt: ArticyAddToTree = create_aatt()
 	aatt.node = NylonText.new()
 	aatt.node.name = text.left(50)

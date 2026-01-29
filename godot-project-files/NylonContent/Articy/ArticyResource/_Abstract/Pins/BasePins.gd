@@ -1,5 +1,8 @@
 class_name ArticyResourceBasePins extends ArticyResourceBaseProperties
 
+## Key: [member ArticyPin.id], Value: [ArticyPin].
+static var pin_dict: Dictionary[String,ArticyPin]
+
 var active_IO: IO = IO.OUTPUT
 
 enum IO {INPUT, OUTPUT}
@@ -24,10 +27,15 @@ func _get_pin(pin: Dictionary, pin_type: String) -> ArticyPin:
 	if pin_type == "InputPins": new_pin.io_type = IO.INPUT
 	if pin_type == "OutputPins": new_pin.io_type = IO.OUTPUT
 	
+	new_pin.text = pin.get("Text")
 	new_pin.id = pin.get("Id")
 	new_pin.owner_id = pin.get("Owner")
 	new_pin.connections = connections
-	
+	if new_pin.id == "0x0100000000000956":
+		print("processing pin:")
+		print(new_pin)
+		pass
+	pin_dict.get_or_add(new_pin.id, new_pin)
 	return new_pin
 
 
@@ -39,3 +47,17 @@ func _get_connection(connection: Dictionary) -> ArticyConnection:
 	new_connection.target = connection.get("Target")
 	
 	return new_connection
+
+
+func _get_incoming():
+	var incoming_pins: Dictionary
+	for pin_id in pin_dict:
+		var pin = pin_dict.get_or_add(pin_id)
+		var pin_is_connected = false
+		
+		for connection in pin.connections:
+			if connection.target_pin_id == id:
+				pin_is_connected = true
+		
+		if pin_is_connected:
+			incoming_pins.get_or_add(pin)

@@ -1,3 +1,5 @@
+/articy-templates-for-nylon
+
 /godot-project-files/icon.sv*
 /godot-project-files/.editorconfig
 /godot-project-files/project.godot
@@ -33,4 +35,4 @@ export_credentials.cfg
 .mono/
 data_*/
 mono_crash.*.json
-/articy-templates-for-nylon
+
